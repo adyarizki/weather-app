@@ -20,16 +20,29 @@ export function showWeather(data) {
     document.querySelector(".wind-js")
     .innerHTML= data.wind.speed + " km/h";
 
-     if (data.weather[0].main == "Clouds") {
-        weatherIcon.src ="images/clouds.png";
-    }else if (data.weather[0].main == "Clear") {
-        weatherIcon.src ="images/clear.png";
-    }else if (data.weather[0].main == "Rain") {
-        weatherIcon.src ="images/rain.png";
-    }else if (data.weather[0].main == "Drizzle") {
-        weatherIcon.src ="images/drizzle.png";
-    }else if (data.weather[0].main == "Mist") {
-        weatherIcon.src ="images/mist.png";
+    // if (data.weather[0].main == "Clouds") {
+    //     weatherIcon.src ="images/clouds.png";
+    // }else if (data.weather[0].main == "Clear") {
+    //     weatherIcon.src ="images/clear.png";
+    // }else if (data.weather[0].main == "Rain") {
+    //     weatherIcon.src ="images/rain.png";
+    // }else if (data.weather[0].main == "Drizzle") {
+    //     weatherIcon.src ="images/drizzle.png";
+    // }else if (data.weather[0].main == "Mist") {
+    //     weatherIcon.src ="images/mist.png";
+    // }
+
+    const weatherIcon = {
+        Clouds: "images/clouds.png",
+        Clear: "images/clear.png",
+        Rain: "images/rain.png",
+        Drizzle: "images/drizzle.png",
+        Mist: "images/mist.png"
+    };
+
+    const weather = data.weather[0].main;
+    if (weatherIcon[weather]) {
+        weatherIcon.src = weatherIcon[weather];
     }
 
     errorDiv.style.display = "none";
