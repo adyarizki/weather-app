@@ -1,13 +1,24 @@
-const apiKey = "317c454432f073e4f346e735862b2ba1";
-const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+import {fetchWeather} from './weatherModel.js';
+import {showError, showWeather} from './weatherView.js';
+
+// const apiKey = "317c454432f073e4f346e735862b2ba1";
+// const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
 const searchBox = document.querySelector(".search input");
 const searchButton = document.querySelector(".search button");
-const weatherIcon = document.querySelector(".weather-icon-js");
+// const weatherIcon = document.querySelector(".weather-icon-js");
 
 
 async function checkWeather(city) {
-    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+
+    const data = await fetchWeather(city);
+    if (!data) {
+        showError();
+    }else {
+        showWeather(data);
+    }
+   /* const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+
 
     if (response.status == 404) {
         document.querySelector(".error-js").style.display = "block";
@@ -15,11 +26,11 @@ async function checkWeather(city) {
     }else{
             let data = await response.json();
 
-            console.log(data);
+            console.log(data);*/
             
 
 
-    document.querySelector(".city-js")
+   /* document.querySelector(".city-js")
     .innerHTML= data.name;
 
     document.querySelector(".temp-js")
@@ -45,7 +56,7 @@ async function checkWeather(city) {
     
     document.querySelector(".weather-js").style.display = "block";
     document.querySelector(".error-js").style.display = "none";
-    }
+    }*/
     
 }
 
@@ -53,7 +64,7 @@ searchButton.addEventListener("click" , () => {
     checkWeather(searchBox.value);
 });
 
-searchBox.addEventListener("keydown", () => {
+searchBox.addEventListener("keydown", (event) => {
     if (event.key === 'Enter') {
         checkWeather(searchBox.value);
     }

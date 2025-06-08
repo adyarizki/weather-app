@@ -32,7 +32,7 @@ export function showWeather(data) {
         weatherIcon.src ="images/mist.png";
     }
 
-    errorDiv.style.display = "block";
-    weatherDiv.style.display = "none";
+    errorDiv.style.display = "none";
+    weatherDiv.style.display = "block";
 }
 
